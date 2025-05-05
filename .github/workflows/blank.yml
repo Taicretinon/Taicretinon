@@ -1,0 +1,59 @@
+# This is a basic workflow to help you get started with Actions
+            - name: Thiết lập môi trường Node.js
+  sử dụng: actions/setup-node@v3.9.1
+  với:
+    # Thiết lập xác thực luôn trong npmrc.
+    always-auth: # tùy chọn, mặc định là false
+    # Phiên bản Spec của phiên bản sử dụng. Ví dụ: 12.x, 10.15.1, >=10.15.0.
+    node-version: # tùy chọn
+    # Tệp chứa phiên bản Spec của phiên bản cần sử dụng. Ví dụ: .nvmrc, .node-version, .tool-versions.
+    node-version-file: # tùy chọn
+    # Kiến trúc mục tiêu để Node sử dụng. Ví dụ: x86, x64. Sẽ sử dụng kiến ​​trúc hệ thống theo mặc định.
+    kiến trúc: # tùy chọn
+    # Đặt tùy chọn này nếu bạn muốn hành động kiểm tra phiên bản mới nhất có sẵn đáp ứng thông số kỹ thuật của phiên bản.
+    kiểm tra-mới nhất: # tùy chọn
+    # Đăng ký tùy chọn để thiết lập xác thực. Sẽ thiết lập đăng ký trong tệp .npmrc và .yarnrc cấp dự án và thiết lập xác thực để đọc từ env.NODE_AUTH_TOKEN.
+    registry-url: # tùy chọn
+    # Phạm vi tùy chọn để xác thực với các sổ đăng ký có phạm vi. Sẽ chuyển về chủ sở hữu kho lưu trữ khi sử dụng sổ đăng ký GitHub Packages (https://npm.pkg.github.com/).
+    phạm vi: # tùy chọn
+    # Được sử dụng để kéo phân phối nút từ node-versions. Vì có giá trị mặc định, giá trị này thường không được người dùng cung cấp. Khi chạy hành động này trên github.com, giá trị mặc định là đủ. Khi chạy trên GHES, bạn có thể truyền mã thông báo truy cập cá nhân cho github.com nếu bạn đang gặp phải giới hạn tốc độ.
+    token: # tùy chọn, mặc định là ${{ github.server_url == 'https://github.com' && github.token || '' }}
+    # Được sử dụng để chỉ định trình quản lý gói để lưu trữ đệm trong thư mục mặc định. Các giá trị được hỗ trợ: npm, yarn, pnpm.
+    bộ nhớ đệm: # tùy chọn
+    # Được sử dụng để chỉ định đường dẫn đến tệp phụ thuộc: package-lock.json, yarn.lock, v.v. Hỗ trợ ký tự đại diện hoặc danh sách tên tệp để lưu trữ đệm nhiều phụ thuộc.
+    cache-dependency-path: # tùy chọn
+          
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
